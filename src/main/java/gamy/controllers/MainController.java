@@ -52,7 +52,7 @@ public class MainController {
 
     @FXML
     public void showDiscovery() {
-        // loadView("Discovery.fxml");
+        loadView("Discovery.fxml");
     }
 
     @FXML

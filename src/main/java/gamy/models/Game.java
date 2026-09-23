@@ -1,6 +1,8 @@
 package gamy.models;
 
 import jakarta.persistence.*;
+import javafx.application.Platform;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -48,7 +50,7 @@ public class Game {
         joinColumns = @JoinColumn(name = "game_id"),
         inverseJoinColumns = @JoinColumn(name = "platform_id")
     )
-    private Set<Platform> platforms = new HashSet<>();
+    private Set<GamePlatform> platforms = new HashSet<>();
 
     public Game() {}
 
@@ -84,6 +86,6 @@ public class Game {
     public Set<Genre> getGenres() { return genres; }
     public void setGenres(Set<Genre> _genres) { this.genres = _genres; }
 
-    public Set<Platform> getPlatforms() { return platforms; }
-    public void setPlatforms(Set<Platform> _platforms) { this.platforms = _platforms; }
+    public Set<GamePlatform> getPlatforms() { return platforms; }
+    public void setPlatforms(Set<GamePlatform> _platforms) { this.platforms = _platforms; }
 }

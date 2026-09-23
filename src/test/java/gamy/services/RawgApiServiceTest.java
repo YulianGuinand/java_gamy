@@ -26,7 +26,7 @@ public class RawgApiServiceTest {
         CountDownLatch latch = new CountDownLatch(1);
         final boolean[] testPassed = {false};
 
-        rawgApiService.searchGamesAsync("The Witcher", 
+        rawgApiService.searchGamesDetailedAsync("The Witcher", 
             games -> {
                 assertNotNull(games, "La liste des jeux ne doit pas etre null.");
                 System.out.println("Jeux trouves : " + games);

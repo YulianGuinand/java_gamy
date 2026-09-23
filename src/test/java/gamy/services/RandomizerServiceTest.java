@@ -25,7 +25,7 @@ public class RandomizerServiceTest {
     private User user1, user2;
     private Game gameSolo, gameMulti, gameExternal;
     private Genre genreRPG, genreFPS;
-    private Platform platformPC;
+    private GamePlatform platformPC;
 
     @BeforeEach
     public void setUp() {
@@ -40,7 +40,7 @@ public class RandomizerServiceTest {
             Transaction tx = session.beginTransaction();
             genreRPG = new Genre("RPG_" + time);
             genreFPS = new Genre("FPS_" + time);
-            platformPC = new Platform("PC_" + time);
+            platformPC = new GamePlatform("PC_" + time);
             session.persist(genreRPG);
             session.persist(genreFPS);
             session.persist(platformPC);

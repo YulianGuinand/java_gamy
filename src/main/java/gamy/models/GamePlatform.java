@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "platforms")
-public class Platform {
+public class GamePlatform {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +13,9 @@ public class Platform {
     @Column(nullable = false, unique = true, length = 50)
     private String name;
 
-    public Platform() {}
+    public GamePlatform() {}
 
-    public Platform(String _name) {
+    public GamePlatform(String _name) {
         this.name = _name;
     }
 
