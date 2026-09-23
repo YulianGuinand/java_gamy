@@ -57,4 +57,64 @@ public class UserDAOTest {
         // CLEANUP
         userDAO.delete(updatedUser);
     }
+
+    @Test
+    public void testFindByEmailAndPseudo() {
+        // CREATE
+        User user = new User("search@gamy.com", "pass123", "Searcher");
+        userDAO.create(user);
+
+        // TEST findByEmail
+        User foundByEmail = userDAO.findByEmail("search@gamy.com");
+        assertNotNull(foundByEmail, "L'utilisateur doit etre trouve par son email.");
+        assertEquals("Searcher", foundByEmail.getPseudo());
+
+        // TEST findByPseudo
+        User foundByPseudo = userDAO.findByPseudo("Searcher");
+        assertNotNull(foundByPseudo, "L'utilisateur doit etre trouve par son pseudo.");
+        assertEquals("search@gamy.com", foundByPseudo.getEmail());
+
+        // TEST des requetes introuvables
+        assertNull(userDAO.findByEmail("inexistant@gamy.com"));
+        assertNull(userDAO.findByPseudo("Ghost"));
+
+        // CLEANUP
+        userDAO.delete(user);
+    }
+
+    @Test
+    public void testFindByIdWithRelations() {
+        // CREATE
+        User mainUser = new User("main@gamy.com", "pass", "MainUser");
+        User friendUser = new User("friend@gamy.com", "pass", "Friend");
+        User blockedUser = new User("blocked@gamy.com", "pass", "Blocked");
+        
+        userDAO.create(mainUser);
+        userDAO.create(friendUser);
+        userDAO.create(blockedUser);
+
+        // Ajout des relations
+        mainUser.getFriends().add(friendUser);
+        mainUser.getBlockedUsers().add(blockedUser);
+        userDAO.update(mainUser);
+
+        // TEST findByIdWithRelations
+        User retrievedUser = userDAO.findByIdWithRelations(mainUser.getId());
+        
+        assertNotNull(retrievedUser);
+        assertEquals(1, retrievedUser.getFriends().size(), "L'utilisateur doit avoir 1 ami.");
+        assertEquals("Friend", retrievedUser.getFriends().iterator().next().getPseudo());
+        
+        assertEquals(1, retrievedUser.getBlockedUsers().size(), "L'utilisateur doit avoir 1 personne bloquee.");
+        assertEquals("Blocked", retrievedUser.getBlockedUsers().iterator().next().getPseudo());
+
+        // CLEANUP (vider les relations avant de supprimer pour eviter les erreurs de cles etrangeres)
+        retrievedUser.getFriends().clear();
+        retrievedUser.getBlockedUsers().clear();
+        userDAO.update(retrievedUser);
+        
+        userDAO.delete(retrievedUser);
+        userDAO.delete(friendUser);
+        userDAO.delete(blockedUser);
+    }
 }

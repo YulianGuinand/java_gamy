@@ -26,4 +26,16 @@ public class UserDAO extends AbstractDAO<User> {
             return query.uniqueResult();
         }
     }
+
+    public User findByIdWithRelations(Long id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<User> query = session.createQuery(
+                "SELECT DISTINCT u FROM User u " +
+                "LEFT JOIN FETCH u.friends " +
+                "LEFT JOIN FETCH u.blockedUsers " +
+                "WHERE u.id = :id", User.class);
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        }
+    }
 }
