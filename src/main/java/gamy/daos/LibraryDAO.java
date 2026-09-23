@@ -19,4 +19,15 @@ public class LibraryDAO extends AbstractDAO<LibraryEntry> {
             return query.list();
         }
     }
+
+    public LibraryEntry findByUserAndGame(Long userId, Long gameId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<LibraryEntry> query = session.createQuery(
+                "FROM LibraryEntry le WHERE le.user.id = :userId AND le.game.id = :gameId", 
+                LibraryEntry.class);
+            query.setParameter("userId", userId);
+            query.setParameter("gameId", gameId);
+            return query.uniqueResult();
+        }
+    }
 }
