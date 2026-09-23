@@ -1,21 +1,26 @@
 package gamy;
 
 import gamy.utils.HibernateUtil;
+import gamy.utils.SceneManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-import org.hibernate.Session;
+public class Main extends Application {
 
-public class Main {
+    @Override
+    public void start(Stage primaryStage) {
+        SceneManager.setPrimaryStage(primaryStage);
+        
+        SceneManager.switchScene("Login.fxml", "Connexion");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("Fermeture de l'application et d'Hibernate...");
+        HibernateUtil.shutdown();
+    }
+
     public static void main(String[] args) {
-        System.out.println("Lancement du test de connexion Hibernate...");
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            System.out.println("Connexion à la base de données réussie !");
-            System.out.println("Hibernate a pu communiquer avec PostgreSQL.");
-        } catch (Exception e) {
-            System.err.println("Erreur de connexion à la base de données :");
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.shutdown();
-        }
+        launch(args);
     }
 }
