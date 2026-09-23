@@ -5,44 +5,52 @@ import java.util.concurrent.CompletableFuture;
 import gamy.services.AuthService;
 import gamy.utils.SceneManager;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.application.Platform;
 
-public class LoginController {
+public class RegisterController {
 
     @FXML private TextField emailField;
+    @FXML private TextField pseudoField;
     @FXML private PasswordField passwordField;
+    @FXML private PasswordField confirmPasswordField;
     @FXML private Label errorLabel;
-    @FXML private Button loginButton;
 
     private AuthService authService;
 
-    public LoginController() {
+    public RegisterController() {
         this.authService = new AuthService();
     }
 
     @FXML
-    public void handleLogin() {
+    public void handleRegister() {
         String email = emailField.getText();
+        String pseudo = pseudoField.getText();
         String password = passwordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
 
-        if (email.isEmpty() || password.isEmpty()) {
+        if (email.isEmpty() || pseudo.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             errorLabel.setText("Veuillez remplir tous les champs.");
             return;
         }
 
+        if (!password.equals(confirmPassword)) {
+            errorLabel.setText("Les mots de passe ne correspondent pas.");
+            return;
+        }
+
         errorLabel.setStyle("-fx-text-fill: blue;");
-        errorLabel.setText("Connexion en cours...");
+        errorLabel.setText("Création du compte en cours...");
 
         CompletableFuture.runAsync(() -> {
             try {
+                authService.register(email, password, pseudo);
                 authService.login(email, password);
                 
                 Platform.runLater(() -> {
-                    System.out.println("Connexion réussie pour : " + email);
+                    System.out.println("Compte créé et connecté : " + pseudo);
                     SceneManager.switchScene("MainLayout.fxml", "Accueil");
                 });
                 
@@ -56,7 +64,7 @@ public class LoginController {
     }
 
     @FXML
-    public void goToRegister() {
-        gamy.utils.SceneManager.switchScene("Register.fxml", "Inscription");
+    public void backToLogin() {
+        SceneManager.switchScene("Login.fxml", "Connexion");
     }
 }

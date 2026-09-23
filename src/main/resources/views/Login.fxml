@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Hyperlink?>
 
 <VBox alignment="CENTER" spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamy.controllers.LoginController">
     <padding>
@@ -29,5 +30,9 @@
         <Label fx:id="errorLabel" textFill="RED" wrapText="true"/>
         
         <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleLogin" text="Se connecter" />
+
+        <VBox alignment="CENTER">
+            <Hyperlink text="Pas encore de compte ? S'inscrire" onAction="#goToRegister" />
+        </VBox>
     </VBox>
 </VBox>
