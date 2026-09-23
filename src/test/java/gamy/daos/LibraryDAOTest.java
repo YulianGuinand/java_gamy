@@ -37,7 +37,7 @@ public class LibraryDAOTest {
         //  CREATE LIBRARY
         LibraryEntry entry = new LibraryEntry(user, game, LibraryStatus.OWNED);
         libraryDAO.create(entry);
-        assertNotNull(entry.getId(), "L'ID de l'entree doit être genere.");
+        assertNotNull(entry.getId(), "L'ID de l'entree doit etre genere.");
 
         // READ
         List<LibraryEntry> userLibrary = libraryDAO.findByUserId(user.getId());
