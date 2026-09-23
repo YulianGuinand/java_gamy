@@ -44,3 +44,5 @@ $RECYCLE.BIN/
 # Fichiers de logs et d'environnement (pour cacher d'éventuels identifiants BDD)
 *.log
 .env
+
+src/main/resources/hibernate.cfg.xml
