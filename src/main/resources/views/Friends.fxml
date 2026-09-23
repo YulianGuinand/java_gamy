@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamy.controllers.FriendsController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label text="Gestion des Amis et Blocages">
+        <font><Font name="System Bold" size="24.0" /></font>
+    </Label>
+
+    <Label fx:id="feedbackLabel" textFill="RED" />
+
+    <VBox spacing="8.0" style="-fx-background-color: #f8f9fa; -fx-padding: 10; -fx-background-radius: 5;">
+        <Label text="Rechercher un utilisateur" style="-fx-font-weight: bold;" />
+        <HBox spacing="10.0">
+            <TextField fx:id="searchField" promptText="Entrer un pseudo..." HBox.hgrow="ALWAYS" />
+            <Button text="Rechercher" onAction="#handleSearchUser" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+        </HBox>
+        <ListView fx:id="searchResultListView" prefHeight="80.0" />
+        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <Button text="Ajouter en ami" onAction="#handleAddSearchedUser" style="-fx-background-color: #27ae60; -fx-text-fill: white;" />
+        </HBox>
+    </VBox>
+
+    <VBox spacing="8.0" VBox.vgrow="ALWAYS" style="-fx-background-color: #f8f9fa; -fx-padding: 10; -fx-background-radius: 5;">
+        <Label text="Mes Amis Actuels" style="-fx-font-weight: bold;" />
+        <ListView fx:id="friendsListView" VBox.vgrow="ALWAYS" />
+        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <Button text="Supprimer l'ami" onAction="#handleRemoveFriend" style="-fx-background-color: #e67e22; -fx-text-fill: white;" />
+            <Button text="Bloquer l'utilisateur" onAction="#handleBlockUser" style="-fx-background-color: #c0392b; -fx-text-fill: white;" />
+        </HBox>
+    </VBox>
+
+    <VBox spacing="8.0" VBox.vgrow="ALWAYS" style="-fx-background-color: #f8f9fa; -fx-padding: 10; -fx-background-radius: 5;">
+        <Label text="Utilisateurs Bloqués" style="-fx-font-weight: bold;" />
+        <ListView fx:id="blockedListView" prefHeight="100.0" />
+        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <Button text="Débloquer" onAction="#handleUnblockUser" style="-fx-background-color: #7f8c8d; -fx-text-fill: white;" />
+        </HBox>
+    </VBox>
+</VBox>

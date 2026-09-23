@@ -2,8 +2,10 @@ package gamy.controllers;
 
 import java.util.concurrent.CompletableFuture;
 
+import gamy.models.User;
 import gamy.services.AuthService;
 import gamy.utils.SceneManager;
+import gamy.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,8 +41,9 @@ public class LoginController {
 
         CompletableFuture.runAsync(() -> {
             try {
-                authService.login(email, password);
-                
+                User user = authService.login(email, password);
+                SessionManager.setCurrentUser(user);
+
                 Platform.runLater(() -> {
                     System.out.println("Connexion réussie pour : " + email);
                     SceneManager.switchScene("MainLayout.fxml", "Accueil");

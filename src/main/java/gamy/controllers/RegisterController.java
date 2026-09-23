@@ -2,8 +2,10 @@ package gamy.controllers;
 
 import java.util.concurrent.CompletableFuture;
 
+import gamy.models.User;
 import gamy.services.AuthService;
 import gamy.utils.SceneManager;
+import gamy.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -47,7 +49,8 @@ public class RegisterController {
         CompletableFuture.runAsync(() -> {
             try {
                 authService.register(email, password, pseudo);
-                authService.login(email, password);
+                User user = authService.login(email, password);
+                SessionManager.setCurrentUser(user);
                 
                 Platform.runLater(() -> {
                     System.out.println("Compte créé et connecté : " + pseudo);

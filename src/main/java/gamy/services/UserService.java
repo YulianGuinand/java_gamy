@@ -67,6 +67,16 @@ public class UserService {
         }
     }
 
+    public void unblockUser(Long currentUserId, Long userToUnblockId) throws Exception {
+        User currentUser = userDAO.findByIdWithRelations(currentUserId);
+        User userToUnblock = userDAO.read(userToUnblockId);
+
+        if (currentUser != null && userToUnblock != null) {
+            currentUser.getBlockedUsers().removeIf(u -> u.getId().equals(userToUnblockId));
+            userDAO.update(currentUser);
+        }
+    }
+
     public List<LibraryEntry> getFriendLibrary(Long currentUserId, Long friendId) throws Exception {
         User currentUser = userDAO.findByIdWithRelations(currentUserId);
 

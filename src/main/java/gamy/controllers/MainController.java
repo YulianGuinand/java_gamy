@@ -1,9 +1,16 @@
 package gamy.controllers;
 
+import java.io.IOException;
+
+import gamy.models.User;
 import gamy.utils.SceneManager;
+import gamy.utils.SessionManager;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import java.net.URL;
+import javafx.scene.Node;
 
 public class MainController {
 
@@ -12,32 +19,50 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        userNameLabel.setText("Bonjour !");
+        User currentUser = SessionManager.getCurrentUser();
+        if (currentUser != null) {
+            userNameLabel.setText("Bonjour, " + currentUser.getPseudo());
+        }
+        
+        showLibrary();
+    }
+
+    private void loadView(String fxmlFileName) {
+        try {
+            URL location = getClass().getResource("/views/" + fxmlFileName);
+            if (location != null) {
+                Node view = FXMLLoader.load(location);
+                contentArea.getChildren().setAll(view);
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur de chargement de la vue centrale : " + fxmlFileName);
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void showLibrary() {
-        System.out.println("Affichage de la bibliothèque...");
+        loadView("Library.fxml");
     }
 
     @FXML
     public void showFriends() {
-        System.out.println("Affichage des amis...");
+        loadView("Friends.fxml");
     }
 
     @FXML
     public void showDiscovery() {
-        System.out.println("Affichage de la découverte...");
+        // loadView("Discovery.fxml");
     }
 
     @FXML
     public void showRandomizer() {
-        System.out.println("Affichage du randomizer...");
+        // loadView("Randomizer.fxml");
     }
 
     @FXML
     public void handleLogout() {
-        System.out.println("Déconnexion...");
+        SessionManager.logout();
         SceneManager.switchScene("Login.fxml", "Connexion");
     }
 }
