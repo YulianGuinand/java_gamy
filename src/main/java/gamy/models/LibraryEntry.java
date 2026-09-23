@@ -26,21 +26,21 @@ public class LibraryEntry {
 
     public LibraryEntry() {}
 
-    public LibraryEntry(User user, Game game, LibraryStatus status) {
-        this.user = user;
-        this.game = game;
-        this.status = status;
+    public LibraryEntry(User _user, Game _game, LibraryStatus _status) {
+        this.user = _user;
+        this.game = _game;
+        this.status = _status;
     }
 
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long _id) { this.id = _id; }
 
     public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public void setUser(User _user) { this.user = _user; }
 
     public Game getGame() { return game; }
-    public void setGame(Game game) { this.game = game; }
+    public void setGame(Game _game) { this.game = _game; }
 
     public LibraryStatus getStatus() { return status; }
-    public void setStatus(LibraryStatus status) { this.status = status; }
+    public void setStatus(LibraryStatus _status) { this.status = _status; }
 }

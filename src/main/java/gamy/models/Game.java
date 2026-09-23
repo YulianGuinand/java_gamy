@@ -52,38 +52,38 @@ public class Game {
 
     public Game() {}
 
-    public Game(String title, GameMode gameMode) {
-        this.title = title;
-        this.gameMode = gameMode;
+    public Game(String _title, GameMode _gameMode) {
+        this.title = _title;
+        this.gameMode = _gameMode;
     }
 
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long _id) { this.id = _id; }
     
     public Long getApiId() { return apiId; }
-    public void setApiId(Long apiId) { this.apiId = apiId; }
+    public void setApiId(Long _apiId) { this.apiId = _apiId; }
 
     public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public void setTitle(String _title) { this.title = _title; }
 
     public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String _description) { this.description = _description; }
 
     public LocalDate getReleaseDate() { return releaseDate; }
-    public void setReleaseDate(LocalDate releaseDate) { this.releaseDate = releaseDate; }
+    public void setReleaseDate(LocalDate _releaseDate) { this.releaseDate = _releaseDate; }
 
     public Double getPrice() { return price; }
-    public void setPrice(Double price) { this.price = price; }
+    public void setPrice(Double _price) { this.price = _price; }
 
     public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public void setImageUrl(String _imageUrl) { this.imageUrl = _imageUrl; }
 
     public GameMode getGameMode() { return gameMode; }
-    public void setGameMode(GameMode gameMode) { this.gameMode = gameMode; }
+    public void setGameMode(GameMode _gameMode) { this.gameMode = _gameMode; }
 
     public Set<Genre> getGenres() { return genres; }
-    public void setGenres(Set<Genre> genres) { this.genres = genres; }
+    public void setGenres(Set<Genre> _genres) { this.genres = _genres; }
 
     public Set<Platform> getPlatforms() { return platforms; }
-    public void setPlatforms(Set<Platform> platforms) { this.platforms = platforms; }
+    public void setPlatforms(Set<Platform> _platforms) { this.platforms = _platforms; }
 }

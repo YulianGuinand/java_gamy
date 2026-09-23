@@ -15,12 +15,12 @@ public class Genre {
 
     public Genre() {}
 
-    public Genre(String name) {
-        this.name = name;
+    public Genre(String _name) {
+        this.name = _name;
     }
 
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long _id) { this.id = _id; }
     public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setName(String _name) { this.name = _name; }
 }
