@@ -7,8 +7,11 @@ import gamy.models.Game;
 import gamy.models.LibraryEntry;
 import gamy.models.LibraryStatus;
 import gamy.models.User;
+import javafx.application.Platform;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public class LibraryService {
 
@@ -68,5 +71,14 @@ public class LibraryService {
 
     public List<LibraryEntry> getUserLibrary(Long userId) {
         return libraryDAO.findByUserId(userId);
+    }
+
+    public void getFriendLibraryAsync(Long friendId, Consumer<List<LibraryEntry>> onSuccess, Consumer<Throwable> onError) {
+        CompletableFuture.supplyAsync(() -> libraryDAO.findByUserId(friendId))
+            .thenAccept(entries -> Platform.runLater(() -> onSuccess.accept(entries)))
+            .exceptionally(ex -> {
+                Platform.runLater(() -> onError.accept(ex));
+                return null;
+            });
     }
 }

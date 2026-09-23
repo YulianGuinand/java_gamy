@@ -7,12 +7,18 @@ import gamy.utils.SessionManager;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.scene.Parent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -222,5 +228,35 @@ public class FriendsController {
                 });
             }
         });
+    }
+
+    @FXML
+    private void handleViewFriendLibrary() {
+        User selectedFriend = friendsListView.getSelectionModel().getSelectedItem();
+        
+        if (selectedFriend == null) {
+            feedbackLabel.setText("Veuillez sélectionner un ami dans la liste.");
+            return;
+        }
+        
+        feedbackLabel.setText("");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/FriendLibrary.fxml"));
+            Parent root = loader.load();
+
+            FriendLibraryController controller = loader.getController();
+            controller.loadFriendLibrary(selectedFriend);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Bibliothèque de " + selectedFriend.getPseudo());
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            feedbackLabel.setText("Erreur lors du chargement de la bibliothèque.");
+        }
     }
 }

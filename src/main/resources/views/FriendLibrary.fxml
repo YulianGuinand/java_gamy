@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" stylesheets="@../styles/gamy.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamy.controllers.FriendLibraryController">
+    <children>
+        <Label fx:id="titleLabel" styleClass="header-label" text="Bibliothèque de l'ami" />
+        <TableView fx:id="gamesTableView" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="gameTitleColumn" text="Jeu" prefWidth="250.0" />
+                <TableColumn fx:id="platformColumn" text="Plateforme" prefWidth="120.0" />
+                <TableColumn fx:id="statusColumn" text="Statut" prefWidth="100.0" />
+            </columns>
+        </TableView>
+    </children>
+</VBox>

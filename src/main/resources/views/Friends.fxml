@@ -36,6 +36,7 @@
         <Label text="Mes Amis Actuels" style="-fx-font-weight: bold;" />
         <ListView fx:id="friendsListView" VBox.vgrow="ALWAYS" />
         <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <Button text="Voir la bibliothèque" onAction="#handleViewFriendLibrary" style="-fx-background-color: #2980b9; -fx-text-fill: white;" />
             <Button text="Supprimer l'ami" onAction="#handleRemoveFriend" style="-fx-background-color: #e67e22; -fx-text-fill: white;" />
             <Button text="Bloquer l'utilisateur" onAction="#handleBlockUser" style="-fx-background-color: #c0392b; -fx-text-fill: white;" />
         </HBox>
