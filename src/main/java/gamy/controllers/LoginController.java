@@ -32,8 +32,8 @@ public class LoginController {
         try {
             authService.login(email, password);
             System.out.println("Connexion reussie pour : " + email);
-            errorLabel.setStyle("-fx-text-fill: green;");
-            errorLabel.setText("Connexion reussie !");
+            SceneManager.switchScene("MainLayout.fxml", "Accueil");
+            
         } catch (Exception e) {
             errorLabel.setStyle("-fx-text-fill: red;");
             errorLabel.setText(e.getMessage());

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamy.controllers.MainController">
+    <!-- Menu lateral a gauche -->
+    <left>
+        <VBox prefWidth="200.0" spacing="15.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="30.0" />
+            </padding>
+            <Label fx:id="userNameLabel" text="Bonjour, Pseudo" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+                <VBox.margin>
+                    <Insets bottom="20.0" />
+                </VBox.margin>
+            </Label>
+            
+            <!-- Boutons de navigation -->
+            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showLibrary" text="Ma Bibliothèque" />
+            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showFriends" text="Mes Amis" />
+            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showDiscovery" text="Decouverte" />
+            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#showRandomizer" text="Tirage au Sort" />
+            
+            <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleLogout" text="Deconnexion" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" />
+            </VBox>
+        </VBox>
+    </left>
+    
+    <!-- Zone centrale dynamique -->
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-background-color: #ecf0f1;" BorderPane.alignment="CENTER">
+            <Label text="Selectionnez une rubrique dans le menu" textFill="#7f8c8d">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+        </StackPane>
+    </center>
+</BorderPane>
