@@ -19,4 +19,11 @@ public class UserDAO extends AbstractDAO<User> {
         }
     }
 
+    public User findByPseudo(String pseudo) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<User> query = session.createQuery("FROM User WHERE pseudo = :pseudo", User.class);
+            query.setParameter("pseudo", pseudo);
+            return query.uniqueResult();
+        }
+    }
 }
