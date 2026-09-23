@@ -1,0 +1,46 @@
+# Dossier de build Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Fichiers compilés Java (inclus dans target, mais placés par sécurité)
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# Configuration Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Configuration IntelliJ IDEA (si un collaborateur utilise cet IDE)
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Configuration Eclipse (si un collaborateur utilise cet IDE)
+.settings/
+.project
+.classpath
+.factorypath
+
+# Fichiers système Windows et macOS
+Thumbs.db
+ehthumbs.db
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Fichiers de logs et d'environnement (pour cacher d'éventuels identifiants BDD)
+*.log
+.env
