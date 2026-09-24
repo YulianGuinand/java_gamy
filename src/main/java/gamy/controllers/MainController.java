@@ -57,7 +57,7 @@ public class MainController {
 
     @FXML
     public void showRandomizer() {
-        // loadView("Randomizer.fxml");
+        loadView("Randomizer.fxml");
     }
 
     @FXML

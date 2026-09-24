@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamy.controllers.RandomizerController">
+    
+    <Label text="Tirage au Sort de Jeu" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <RadioButton fx:id="radioSolo" text="Solo" selected="true">
+            <toggleGroup>
+                <ToggleGroup fx:id="modeGroup"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="radioMulti" text="Multijoueur" toggleGroup="$modeGroup"/>
+    </HBox>
+
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="5">
+            <Label text="Genres"/>
+            <ListView fx:id="listGenres" prefHeight="150" prefWidth="150"/>
+            <HBox spacing="5">
+                <Button text="Tous" onAction="#selectAllGenres"/>
+                <Button text="Aucun" onAction="#clearGenres"/>
+            </HBox>
+        </VBox>
+        
+        <VBox spacing="5">
+            <Label text="Plateformes"/>
+            <ListView fx:id="listPlatforms" prefHeight="150" prefWidth="150"/>
+            <HBox spacing="5">
+                <Button text="Toutes" onAction="#selectAllPlatforms"/>
+                <Button text="Aucune" onAction="#clearPlatforms"/>
+            </HBox>
+        </VBox>
+        
+        <VBox spacing="5" fx:id="boxFriends" disable="true">
+            <Label text="Amis (Participants)"/>
+            <ListView fx:id="listFriends" prefHeight="150" prefWidth="150"/>
+            <HBox spacing="5">
+                <Button text="Tous" onAction="#selectAllFriends"/>
+                <Button text="Aucun" onAction="#clearFriends"/>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <Button text="Lancer le Tirage !" onAction="#handleRandomize" style="-fx-font-size: 16px;"/>
+
+    <VBox fx:id="resultBox" spacing="10" alignment="CENTER" visible="false">
+        <Label text="Le jeu choisi est :" style="-fx-font-weight: bold;"/>
+        <Label fx:id="lblGameTitle" style="-fx-font-size: 20px; -fx-text-fill: #2e8b57;"/>
+        <Label fx:id="lblPriceInfo" style="-fx-text-fill: #d32f2f;"/>
+    </VBox>
+    
+    <ProgressIndicator fx:id="loadingIndicator" visible="false" />
+</VBox>

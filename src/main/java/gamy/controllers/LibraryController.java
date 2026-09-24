@@ -1,6 +1,5 @@
 package gamy.controllers;
 
-import gamy.daos.GameDAO;
 import gamy.daos.LibraryDAO;
 import gamy.models.GameMode;
 import gamy.models.LibraryEntry;
@@ -33,7 +32,6 @@ public class LibraryController {
 
     private final LibraryService libraryService = new LibraryService();
     private final LibraryDAO libraryDAO = new LibraryDAO();
-    private final GameDAO gameDAO = new GameDAO();
 
     @FXML
     public void initialize() {

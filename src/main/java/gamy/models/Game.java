@@ -1,7 +1,6 @@
 package gamy.models;
 
 import jakarta.persistence.*;
-import javafx.application.Platform;
 
 import java.time.LocalDate;
 import java.util.HashSet;

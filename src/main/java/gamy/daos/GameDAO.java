@@ -6,7 +6,6 @@ import gamy.models.Game;
 import gamy.models.GamePlatform;
 import gamy.models.Genre;
 import gamy.utils.HibernateUtil;
-import javafx.application.Platform;
 
 import org.hibernate.Transaction;
 
